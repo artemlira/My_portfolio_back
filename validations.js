@@ -23,3 +23,9 @@ export const mediaCreateValidation = [
   body('link', 'Неверная ссылка на соц. сеть').isURL(),
   body('icon', 'Неверная ссылка на иконку').isURL(),
 ];
+
+export const contactCreateValidation = [
+  body('name', 'Введите название контакта').isLength({ min: 3 }).isString(),
+  body('value', 'Неверное значене контакта').isLength({ min: 3 }).isString(),
+  body('icon', 'Неверная ссылка на контакт').isURL(),
+];
