@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-const SkillSchema = new mongoose.Schema({
-  categoryEN: {
+const MediaSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  categoryUA: {
+  link: {
     type: String,
     required: true,
   },
-  value: {
-    type: Array,
+  icon: {
+    type: String,
     required: true,
   },
   user: {
@@ -21,4 +21,4 @@ const SkillSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-export default mongoose.model('Skill', SkillSchema);
+export default mongoose.model('Media', MediaSchema);

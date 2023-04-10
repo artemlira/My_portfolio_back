@@ -17,3 +17,9 @@ export const skillCreateValidation = [
   body('categoryUA', 'Введите категорию').isLength({ min: 3 }).isString(),
   body('value', 'Укажите значения').isArray(),
 ];
+
+export const mediaCreateValidation = [
+  body('name', 'Введите имя соц. сети').isLength({ min: 3 }).isString(),
+  body('link', 'Неверная ссылка на соц. сеть').isURL(),
+  body('icon', 'Неверная ссылка на иконку').isURL(),
+];

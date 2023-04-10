@@ -1,9 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
-import { registerValidation, loginValidation, skillCreateValidation } from "./validations.js";
+import { registerValidation, loginValidation, skillCreateValidation, mediaCreateValidation } from "./validations.js";
 import checkAuth from "./utils/checkAuth.js";
 import * as UserController from './controllers/UserController.js';
 import * as SkillController from './controllers/SkillController.js';
+import * as MediaController from './controllers/MediaController.js';
 
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.jcpn6xu.mongodb.net/portfolio?retryWrites=true&w=majority')
@@ -22,6 +23,11 @@ app.get('/skills', SkillController.getAll);
 app.post('/skills', checkAuth, skillCreateValidation, SkillController.create);
 app.delete('/skills/:id', checkAuth, SkillController.remove);
 app.patch('/skills/:id', checkAuth, SkillController.update);
+
+app.get('/medias', MediaController.getAll);
+app.post('/medias', checkAuth, mediaCreateValidation, MediaController.create);
+app.delete('/medias/:id', checkAuth, MediaController.remove);
+app.patch('/medias/:id', checkAuth, MediaController.update);
 
 
 app.listen(4444, (err) => {
