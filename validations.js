@@ -29,3 +29,8 @@ export const contactCreateValidation = [
   body('value', 'Неверное значене контакта').isLength({ min: 3 }).isString(),
   body('icon', 'Неверная ссылка на контакт').isURL(),
 ];
+
+export const factCreateValidation = [
+  body('valueUA', 'Введите массив фактов').isArray(),
+  body('valueEN', 'Введите массив фактов').isArray(),
+];

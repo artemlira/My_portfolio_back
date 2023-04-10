@@ -1,13 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import {
-  registerValidation, loginValidation, skillCreateValidation, mediaCreateValidation, contactCreateValidation
+  registerValidation, loginValidation, skillCreateValidation, mediaCreateValidation, contactCreateValidation,
+  factCreateValidation
 } from "./validations.js";
 import checkAuth from "./utils/checkAuth.js";
 import * as UserController from './controllers/UserController.js';
 import * as SkillController from './controllers/SkillController.js';
 import * as MediaController from './controllers/MediaController.js';
 import * as ContactController from './controllers/ContactController.js';
+import * as FactController from './controllers/FactController.js';
 
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.jcpn6xu.mongodb.net/portfolio?retryWrites=true&w=majority')
@@ -36,6 +38,11 @@ app.get('/contacts', ContactController.getAll);
 app.post('/contacts', checkAuth, contactCreateValidation, ContactController.create);
 app.delete('/contacts/:id', checkAuth, ContactController.remove);
 app.patch('/contacts/:id', checkAuth, ContactController.update);
+
+app.get('/facts', FactController.getAll);
+app.post('/facts', checkAuth, factCreateValidation, FactController.create);
+app.delete('/facts/:id', checkAuth, FactController.remove);
+app.patch('/facts/:id', checkAuth, FactController.update);
 
 
 app.listen(4444, (err) => {
