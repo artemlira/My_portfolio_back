@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import {
   registerValidation, loginValidation, skillCreateValidation, mediaCreateValidation, contactCreateValidation,
-  factCreateValidation
+  factCreateValidation, projectCreateValidation
 } from "./validations.js";
 import checkAuth from "./utils/checkAuth.js";
 import * as UserController from './controllers/UserController.js';
@@ -10,6 +10,7 @@ import * as SkillController from './controllers/SkillController.js';
 import * as MediaController from './controllers/MediaController.js';
 import * as ContactController from './controllers/ContactController.js';
 import * as FactController from './controllers/FactController.js';
+import * as ProjectController from './controllers/ProjectController.js';
 
 
 mongoose.connect('mongodb+srv://admin:wwwwww@cluster0.jcpn6xu.mongodb.net/portfolio?retryWrites=true&w=majority')
@@ -43,6 +44,11 @@ app.get('/facts', FactController.getAll);
 app.post('/facts', checkAuth, factCreateValidation, FactController.create);
 app.delete('/facts/:id', checkAuth, FactController.remove);
 app.patch('/facts/:id', checkAuth, FactController.update);
+
+app.get('/projects', ProjectController.getAll);
+app.post('/projects', checkAuth, projectCreateValidation, ProjectController.create);
+app.delete('/projects/:id', checkAuth, ProjectController.remove);
+app.patch('/projects/:id', checkAuth, ProjectController.update);
 
 
 app.listen(4444, (err) => {
